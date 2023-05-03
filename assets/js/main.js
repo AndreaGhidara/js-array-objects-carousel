@@ -26,25 +26,37 @@ const container = document.querySelector(".container");
 const carusel = document.querySelector(".carusel");
 const btnNext = document.querySelector(".next");
 const btnPrev = document.querySelector(".previous");
-
-
 let counter = 0;
-console.log(images[counter].text);
+
+function addClass(element, classe, classe2) {
+    element.classList.add(classe, classe2);
+}
+
+function filler(index){
+        imageSlider.src = `./assets/${images[index].image}`; //SRC del immagine
+        titleSlider.innerText = images[index].title//Titolo della slider
+        textSlider.innerText = images[index].text//testo della slider
+};
 
 const slider = document.createElement("div");
-slider.classList.add("sliders");
+// slider.classList.add("sliders");
+addClass(slider, "sliders");
 
 const imageSlider = document.createElement("img");
 imageSlider.src = `./assets/${images[0].image}`; //SRC del immagine
-imageSlider.classList.add("absolute", "w-100");//aggingi classe
+// imageSlider.classList.add("absolute", "w-100");//aggingi classe
+addClass(imageSlider, "absolute", "w-100");
 
 const titleSlider = document.createElement("h3");
 titleSlider.innerText = images[0].title//Titolo della slider
-titleSlider.classList.add("title");
+// titleSlider.classList.add("title");
+addClass(titleSlider, "title");
 
 const textSlider = document.createElement("p");
 textSlider.innerText = images[0].text//testo della slider
-textSlider.classList.add("text");
+// textSlider.classList.add("text");
+addClass(textSlider, "text");
+
 
 carusel.append(slider);
 slider.append(imageSlider);
@@ -54,32 +66,19 @@ slider.append(textSlider);
 btnNext.addEventListener("click", () => {
     if (counter == images.length - 1) {
         counter = 0;
-        imageSlider.src = `./assets/${images[counter].image}`; //SRC del immagine
-        titleSlider.innerText = images[counter].title//Titolo della slider
-        textSlider.innerText = images[counter].text//testo della slider
+        filler(counter);
     } else {
         counter++;
-
-        imageSlider.src = `./assets/${images[counter].image}`; //SRC del immagine
-        titleSlider.innerText = images[counter].title//Titolo della slider
-        textSlider.innerText = images[counter].text//testo della slider
-
+        filler(counter);
     }
-
-})
+});
 
 btnPrev.addEventListener("click", () => {
     if (counter == 0) {
         counter = images.length - 1;
-        imageSlider.src = `./assets/${images[counter].image}`; //SRC del immagine
-        titleSlider.innerText = images[counter].title//Titolo della slider
-        textSlider.innerText = images[counter].text//testo della slider
+        filler(counter);
     } else {
         counter--;
-        imageSlider.src = `./assets/${images[counter].image}`; //SRC del immagine
-        titleSlider.innerText = images[counter].title//Titolo della slider
-        textSlider.innerText = images[counter].text//testo della slider
-
+        filler(counter);
     }
-
-})
+});
