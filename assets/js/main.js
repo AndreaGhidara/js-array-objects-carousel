@@ -87,19 +87,6 @@ slider.append(imageSlider);
 slider.append(titleSlider);
 slider.append(textSlider);
 
-btnNext.addEventListener("click", () => {
-    incrementaContatore()
-    clearInterval(autoCarusel);
-});
-
-btnPrev.addEventListener("click", () => {
-    decrementaContatore()
-    clearInterval(autoCarusel);
-});
-
-autoPlay.addEventListener("click", () => {
-    autoCarusel = setInterval(incrementaContatore, 3000);
-});
 
 for (let i = 0; i < images.length; i++) {
     const listElement = images[i];
@@ -111,3 +98,25 @@ for (let i = 0; i < images.length; i++) {
         filler(i);
     })
 }
+
+btnNext.addEventListener("click", () => {
+    clearInterval(autoCarusel);
+    const listThumbnails = document.querySelectorAll("#thumbnails > img");
+    const figureActive = listThumbnails[counter];
+    
+    console.log(figureActive);
+    
+    incrementaContatore()
+    
+    console.log(figureActive);
+    
+});
+
+btnPrev.addEventListener("click", () => {
+    decrementaContatore()
+    clearInterval(autoCarusel);
+});
+
+autoPlay.addEventListener("click", () => {
+    autoCarusel = setInterval(incrementaContatore, 3000);
+});

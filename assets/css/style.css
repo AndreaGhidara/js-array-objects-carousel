@@ -84,4 +84,10 @@ button{
 
 #thumbnails > img {
     height: calc(100% / 5);
+    opacity: 0.5;
+}
+
+
+.active important{
+    opacity: 1; 
 }
