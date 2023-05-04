@@ -27,6 +27,7 @@ const carusel = document.querySelector(".carusel");
 const thumbnails = document.querySelector("#thumbnails")
 const btnNext = document.querySelector(".next");
 const btnPrev = document.querySelector(".previous");
+const autoPlay = document.querySelector(".autoPlay");
 let counter = 0;
 
 function addClass(element, classe, classe2) {
@@ -39,8 +40,7 @@ function filler(index){
     textSlider.innerText = images[index].text//testo della slider
 };
 
-setInterval(incrementaContatore, 3000);
-
+let autoCarusel = setInterval(incrementaContatore, 3000);
 
 function incrementaContatore() {
     if (counter == images.length - 1) {
@@ -89,10 +89,16 @@ slider.append(textSlider);
 
 btnNext.addEventListener("click", () => {
     incrementaContatore()
+    clearInterval(autoCarusel);
 });
 
 btnPrev.addEventListener("click", () => {
     decrementaContatore()
+    clearInterval(autoCarusel);
+});
+
+autoPlay.addEventListener("click", () => {
+    autoCarusel = setInterval(incrementaContatore, 3000);
 });
 
 for (let i = 0; i < images.length; i++) {

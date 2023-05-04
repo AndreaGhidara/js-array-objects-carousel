@@ -70,6 +70,11 @@ button{
     right: 50%;
 }
 
+.autoPlay{
+    position: absolute;
+    bottom: 0;
+}
+
 #thumbnails{
     width: 100px;
     height: 100%;
