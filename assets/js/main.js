@@ -24,6 +24,7 @@ const images = [
 
 const container = document.querySelector(".container");
 const carusel = document.querySelector(".carusel");
+const thumbnails = document.querySelector("#thumbnails")
 const btnNext = document.querySelector(".next");
 const btnPrev = document.querySelector(".previous");
 let counter = 0;
@@ -82,3 +83,16 @@ btnPrev.addEventListener("click", () => {
         filler(counter);
     }
 });
+
+for (let i = 0; i < images.length; i++) {
+    const listElement = images[i];
+    const figure = document.createElement("img");
+    figure.src = "./assets/" + listElement.image;
+    console.log(figure);
+    thumbnails.append(figure);
+    
+    figure.addEventListener("click", function() {
+        filler(i);
+    })
+
+}

@@ -40,33 +40,43 @@ button{
 .sliders{
     width: 800px;
     height: 500px;
-    background-color: darksalmon;
 }
 
 .title{
-    color: red;
+    color: #6d6d6d;
     position: absolute;
-    top: 80%;
-    right: 50px;
+    bottom: 25%;
+    left: 20px;
 }
 
 .text{
+    width: 80%;
     color: rebeccapurple;
-    font-size: 30px;
+    font-size: 20px;
     position: absolute;
-    top:85%;
-    right: 65px;
+    bottom: 10%;
+    left: 10px;
 }
 
 .next{
     position: absolute;
-    top: 50%;
-    right: 0px;
+    bottom: 0;
+    right: 50%;
 }
 
 .previous{
     position: absolute;
-    top: 50%;
-    left: 0px;
+    top: 0;
+    right: 50%;
 }
 
+#thumbnails{
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+}
+
+#thumbnails > img {
+    height: calc(100% / 5);
+}
