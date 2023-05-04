@@ -34,10 +34,33 @@ function addClass(element, classe, classe2) {
 }
 
 function filler(index){
-        imageSlider.src = `./assets/${images[index].image}`; //SRC del immagine
-        titleSlider.innerText = images[index].title//Titolo della slider
-        textSlider.innerText = images[index].text//testo della slider
+    imageSlider.src = `./assets/${images[index].image}`; //SRC del immagine
+    titleSlider.innerText = images[index].title//Titolo della slider
+    textSlider.innerText = images[index].text//testo della slider
 };
+
+setInterval(incrementaContatore, 3000);
+
+
+function incrementaContatore() {
+    if (counter == images.length - 1) {
+        counter = 0;
+        filler(counter);
+    } else {
+        counter++;
+        filler(counter);
+    }
+}
+
+function decrementaContatore() {
+    if (counter == 0) {
+        counter = images.length - 1;
+        filler(counter);
+    } else {
+        counter--;
+        filler(counter);
+    }
+}
 
 const slider = document.createElement("div");
 // slider.classList.add("sliders");
@@ -65,34 +88,20 @@ slider.append(titleSlider);
 slider.append(textSlider);
 
 btnNext.addEventListener("click", () => {
-    if (counter == images.length - 1) {
-        counter = 0;
-        filler(counter);
-    } else {
-        counter++;
-        filler(counter);
-    }
+    incrementaContatore()
 });
 
 btnPrev.addEventListener("click", () => {
-    if (counter == 0) {
-        counter = images.length - 1;
-        filler(counter);
-    } else {
-        counter--;
-        filler(counter);
-    }
+    decrementaContatore()
 });
 
 for (let i = 0; i < images.length; i++) {
     const listElement = images[i];
     const figure = document.createElement("img");
     figure.src = "./assets/" + listElement.image;
-    console.log(figure);
     thumbnails.append(figure);
     
     figure.addEventListener("click", function() {
         filler(i);
     })
-
 }
