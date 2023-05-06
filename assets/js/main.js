@@ -34,11 +34,22 @@ function addClass(element, classe, classe2) {
     element.classList.add(classe, classe2);
 }
 
-function filler(index){
+function filler(index) {
     imageSlider.src = `./assets/${images[index].image}`; //SRC del immagine
-    titleSlider.innerText = images[index].title//Titolo della slider
-    textSlider.innerText = images[index].text//testo della slider
-};
+    titleSlider.innerText = images[index].title; //Titolo della slider
+    textSlider.innerText = images[index].text; //testo della slider
+    // Rimuovi la classe "active" dall'elemento corrente della lista delle miniature
+    const listThumbnails = document.querySelectorAll("#thumbnails > img");
+    const figureActive = listThumbnails[index];
+    const prevActive = document.querySelector("#thumbnails .active");
+    if (prevActive) {
+        prevActive.classList.remove("active");
+    }
+    // Aggiungi la classe "active" all'elemento corrispondente all'immagine corrente
+    figureActive.classList.add("active");
+
+    counter = index;
+}
 
 let autoCarusel = setInterval(incrementaContatore, 3000);
 
@@ -66,6 +77,10 @@ const slider = document.createElement("div");
 // slider.classList.add("sliders");
 addClass(slider, "sliders");
 
+slider.addEventListener("mouseenter", () => clearInterval(autoCarusel));
+slider.addEventListener("mouseleave", () => autoCarusel = setInterval(incrementaContatore, 3000));
+
+
 const imageSlider = document.createElement("img");
 imageSlider.src = `./assets/${images[0].image}`; //SRC del immagine
 // imageSlider.classList.add("absolute", "w-100");//aggingi classe
@@ -87,36 +102,27 @@ slider.append(imageSlider);
 slider.append(titleSlider);
 slider.append(textSlider);
 
-
 for (let i = 0; i < images.length; i++) {
     const listElement = images[i];
     const figure = document.createElement("img");
     figure.src = "./assets/" + listElement.image;
     thumbnails.append(figure);
-    
     figure.addEventListener("click", function() {
         filler(i);
-    })
+    });
 }
 
 btnNext.addEventListener("click", () => {
     clearInterval(autoCarusel);
-    const listThumbnails = document.querySelectorAll("#thumbnails > img");
-    const figureActive = listThumbnails[counter];
-    
-    console.log(figureActive);
-    
-    incrementaContatore()
-    
-    console.log(figureActive);
-    
+    incrementaContatore();
+    const listThumbnails = thumbnails.children;
+    const prevActive = document.querySelector("#thumbnails .active");
+    prevActive.classList.remove("active");
+    const newActive = listThumbnails[counter];
+    newActive.classList.add("active");
 });
 
 btnPrev.addEventListener("click", () => {
     decrementaContatore()
     clearInterval(autoCarusel);
-});
-
-autoPlay.addEventListener("click", () => {
-    autoCarusel = setInterval(incrementaContatore, 3000);
 });

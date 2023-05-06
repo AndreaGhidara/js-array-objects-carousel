@@ -21,11 +21,12 @@ img{
 }
 
 button{
+    font-weight: 800;
     width: 5rem;
     height: 3rem;
     border: none;
     border-radius: 50px;
-    background-color: royalblue;
+    background-color: transparent;
     cursor: pointer;
 }
 
@@ -43,7 +44,9 @@ button{
 }
 
 .title{
-    color: #6d6d6d;
+    color: #fffdfd;
+    font-weight: 800;
+    font-size: 32px;
     position: absolute;
     bottom: 25%;
     left: 20px;
@@ -51,7 +54,7 @@ button{
 
 .text{
     width: 80%;
-    color: rebeccapurple;
+    color: rgb(255, 255, 255);
     font-size: 20px;
     position: absolute;
     bottom: 10%;
@@ -84,10 +87,9 @@ button{
 
 #thumbnails > img {
     height: calc(100% / 5);
-    opacity: 0.5;
+    filter: blur(3px);
 }
 
-
-.active important{
-    opacity: 1; 
+#thumbnails > img.active {
+    filter: none;
 }
